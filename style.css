@@ -1,0 +1,22 @@
+#pokemon-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 0.5rem;
+}
+
+.pokemon-card {
+	width: 200px;
+	aspect-ratio: 1;
+    border: 1px red solid;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background-color: black;
+    color: antiquewhite;
+    
+}
+
+.pokemon-card > img {
+	display: block;
+	width: 100%;
+}

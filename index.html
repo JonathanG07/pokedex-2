@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/pokedex-2/app.js" defer></script>
+    <link rel="stylesheet" href="/pokedex-2/style.css" />
+    <title>Pokedex</title>
+  </head>
+  <body>
+    <nav>
+      <img src="" alt="" />
+      <h1>Pokedex</h1>
+    </nav>
+    <div id="Search">
+      <img src="" alt="" />
+      <div class="element-search">
+        <input type="text" id="search-pokemon" />
+        <div class="option-search">
+          <label for="search-type"></label>
+          <select name="search-type" id="search-type">
+            <option value="Search-by-type:">Search by type:</option>
+            <option value="Wather">Wather</option>
+            <option value="Fire">Fire</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="pokemon-grid">
+        <main id="pokemon-grid"></main>
+    </div>
+  </body>
+</html>
