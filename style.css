@@ -1,17 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+	
+}
+
 #pokemon-grid {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 0.5rem;
+	background: #141616;
+	padding-top: 1.5rem;
+	/* padding-bottom: 3rem;
+	margin-bottom: 0; */
+	padding: 2rem;
 }
 
 .pokemon-card {
 	width: 200px;
-	aspect-ratio: 1;
-    border: 1px red solid;
     text-align: center;
     padding: 0.5rem;
     border-radius: 8px;
-    background-color: black;
+    background-color: #202525;
     color: antiquewhite;
     
 }
@@ -19,4 +29,64 @@
 .pokemon-card > img {
 	display: block;
 	width: 100%;
+	/* justify-content: center; */
+}
+
+#nav-bar{
+	background-color: #99a2a2;
+	height: 80px;
+	display: block;
+	text-align: center;
+	box-shadow: 0 0 25px 0 #202525;
+}
+
+#icon-pokedex{
+	width: 80px;
+	padding: 1rem;
+	background-color: #99a2a2
+}
+
+#Search{
+	height: 20rem;
+	align-items: center;
+	display: flex;
+	background: linear-gradient(rgba(5,7,12,0.75), rgba(5,7,12,0.75)), url(/pokedex-2/img/1366_2000.jpg) center;
+	background-size: cover;
+}
+#background-pokedex{
+	height: 280px;
+}
+
+.element-search{
+	color: #343c3c;
+	text-align: center;
+	padding: 4rem 3cm;
+	border: 1px solid #fafafa10;
+	box-shadow: 0 0 25px #202525;
+	backdrop-filter: blur(10px);
+	border-radius: 4px;
+	margin: 0 auto;
+
+}
+
+#search-pokemon{
+	color: #acbcbc;
+	text-align: center;
+	height: 2rem;
+	width: 18rem;
+	border: 1px solid #fafafa10;
+	backdrop-filter: blur(10px);
+	border-radius: 4px;
+	margin: 0 0 10px 0;
+}
+
+.search-type{
+	color: #acbcbc;
+	text-align: center;
+	height: 2rem;
+	width: 8rem;
+	border: 1px solid #fafafa10;
+	backdrop-filter: blur(10px);
+	border-radius: 4px;
+	margin: 0 0 10px 0;
 }

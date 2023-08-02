@@ -1,6 +1,29 @@
 const pokemonsGlobal = [];
 const pokemonGrid = document.querySelector("#pokemon-grid");
-const typePokemon = "";
+const searchInput = document.querySelector('#search-pokemon');
+
+
+const cleanView = () => {
+  pokemonGrid.innerHTML = '';
+}
+
+searchInput.addEventListener('keyup', () => {
+  const inputValue = searchInput.value;
+  console.log(inputValue);
+  let pokemonsGlobal2 = searchByName(inputValue);
+  console.log(pokemonsGlobal2);
+  cleanView();
+  renderPokemonCard(pokemonsGlobal2);
+});
+
+const searchByName = (searchingParameter) => {
+  const filteredPokemon = pokemonsGlobal.filter((pokemon)=> {
+      if(pokemon.name.includes(searchingParameter)) {
+          return pokemon
+      }
+  })
+  return filteredPokemon
+}
 
 const getPokemons = async () => {
   const response = await fetch(
@@ -8,57 +31,50 @@ const getPokemons = async () => {
   );
   const responseJson = await response.json();
   const pokemons = responseJson.results;
-  console.log(pokemons);
 
   for (let i = 0; i < pokemons.length; i++) {
     const pokemon = pokemons[i];
     const pokemonUrl = pokemon.url;
     const response = await fetch(pokemonUrl);
     const responseJson = await response.json();
-    normalizePokemons(responseJson, pokemon, typePokemon );
-    for (let i = 0; i < responseJson.length; i++) {
-        typePokemon += responseJson.types[i].type.name;
-        
-    }
-    }
-  // console.log(pokemonsGlobal);
+    normalizePokemons(responseJson);
+  }
   
+  renderPokemonCard(pokemonsGlobal);
+}
 
-  renderPokemonCard();
-};
+const normalizePokemons = (pokemon) => {
+  const img = pokemon.sprites.other["official-artwork"].front_default;
+  let types = "";
+  for (let i = 0; i < pokemon.types.length; i++) {
+    console.log(pokemon.types[i].type.name);
+    types += pokemon.types[i].type.name;
+    const isNotLastOne = i !== (pokemon.types.length - 1)
+    if(isNotLastOne) {
+      types += ' ';
+    }
+  }
 
-
-
-const normalizePokemons = (responseJson, pokemon, typePokemon ) => {
-  const img = responseJson.sprites.other["official-artwork"].front_default;
-
-//   for (let i = 0; i < responseJson.length; i++) {
-//     typePokemon = responseJson.types[i].type.name;
-//     // typePokemonGlobal = typePokemon;
-//   }
-  const type = typePokemon;
   const pokemonObject = {
     name: pokemon.name,
-    img: img,
-    type: type,
+    img,
+    types,
   };
   pokemonsGlobal.push(pokemonObject);
-//   typePokemonGlobal.push(typePokemon);
+}
 
-//   console.log(type);
-};
-
-const renderPokemonCard = () => {
-  for (let i = 0; i < pokemonsGlobal.length; i++) {
+const renderPokemonCard = (array) => {
+  for (let i = 0; i < array.length; i++) {
+    console.log(pokemonsGlobal[i]);
     const pokemonCard = document.createElement("div");
     pokemonCard.classList = "pokemon-card";
     pokemonCard.innerHTML = `
-        <h2>${pokemonsGlobal[i].name}</h2>
-        <img src="${pokemonsGlobal[i].img}"
-        />
+        <h2>${array[i].name}</h2>
+        <img src="${array[i].img}"/>
+        <p>${array[i].types}</p>
         `;
     pokemonGrid.appendChild(pokemonCard);
   }
-};
+}
 
 getPokemons();
